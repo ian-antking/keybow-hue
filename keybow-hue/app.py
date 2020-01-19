@@ -11,7 +11,7 @@ def handle_key(index, state):
         'pressed' if state else 'released'))
 
     if state:
-        keybow.set_led(index, 255, 0, 0)
+        keybow.set_led(index, 0, 255, 0)
     else:
         keybow.set_led(index, 0, 0, 0)
 

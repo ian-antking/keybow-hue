@@ -9,6 +9,7 @@ nose = "*"
 [packages]
 keybow = "==0.0.2"
 python-dotenv = "==0.10.3"
+time = "*"
 
 [requires]
 python_version = "3.8"
