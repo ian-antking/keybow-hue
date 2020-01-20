@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import keybow
 import time
-from shutdown import shutdown
+import shutdown
 
 control_keys = [0, 3, 6, 9]
 
