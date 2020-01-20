@@ -1,0 +1,1 @@
+from shutdown.detector import Detector
