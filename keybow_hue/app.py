@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-import keybow
+# import keybow
 import time
 import shutdown
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 control_keys = [0, 3, 6, 9]
-
-for key in control_keys:
-    keybow.set_led(key, 127, 127, 127)
 
 @keybow.on()
 def handle_key(index, state):
@@ -18,6 +19,15 @@ def handle_key(index, state):
 
 
 if __name__ == '__main__':
+    hue_token = os.getenv('HUE_TOKEN')
+    bridge_ip = os.getenv('BRIDGE_IP')
+
+    if not hue_token or not bridge_ip:
+        keybow.setAll(255, 0, 0)
+    else:
+        for key in control_keys:
+            keybow.set_led(key, 127, 127, 127)
+
     killer = shutdown.Detector()
     while not killer.kill_now:
         keybow.show()
