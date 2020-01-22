@@ -23,7 +23,7 @@ if __name__ == '__main__':
     bridge_ip = os.getenv('BRIDGE_IP')
 
     if not hue_token or not bridge_ip:
-        keybow.setAll(255, 0, 0)
+        keybow.set_all(255, 0, 0)
     else:
         for key in control_keys:
             keybow.set_led(key, 127, 127, 127)
