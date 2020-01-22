@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# import keybow
+import keybow
 import time
 import shutdown
 from dotenv import load_dotenv
