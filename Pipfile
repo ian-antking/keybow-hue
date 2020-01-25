@@ -5,11 +5,12 @@ verify_ssl = true
 
 [dev-packages]
 nose = "*"
+autopep8 = "*"
 
 [packages]
 keybow = "==0.0.2"
 python-dotenv = "==0.10.3"
-time = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
