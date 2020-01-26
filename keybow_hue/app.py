@@ -8,7 +8,7 @@ import os
 
 load_dotenv()
 
-control_keys = [0, 3, 6, 9]
+dimmer_keys = [3, 6]
 
 @keybow.on()
 def handle_key(index, state):
@@ -16,9 +16,9 @@ def handle_key(index, state):
     if state:
         keybow.set_led(index, 0, 255, 0)
         if index == 3:
-            room.dim()
-        if index == 6:
             room.brighten()
+        if index == 6:
+            room.dim()
     else:
         keybow.set_led(index, room.brightness, room.brightness, room.brightness)
 
@@ -33,7 +33,8 @@ if __name__ == '__main__':
         print('No config')
     else:
         for key in control_keys:
-            keybow.set_led(key, 127, 127, 127)
+            keybow.set_led(6, room.brightness - 50, room.brightness - 50, room.brightness - 50)
+            keybow.set_led(3, room.brightness + 50, room.brightness + 50, room.brightness + 50)
             room = hue.Room(hue_token, bridge_ip, room_name)
 
     killer = shutdown.Detector()
