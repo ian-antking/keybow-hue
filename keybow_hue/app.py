@@ -33,8 +33,8 @@ if __name__ == '__main__':
         print('No config')
     else:
         room = hue.Room(hue_token, bridge_ip, room_name)
-        keybow.set_led(6, room.brightness - 50, room.brightness - 50, room.brightness - 50)
-        keybow.set_led(3, room.brightness + 50, room.brightness + 50, room.brightness + 50)
+        keybow.set_led(6, room.brightness + 50, room.brightness + 50, room.brightness + 50)
+        keybow.set_led(3, room.brightness - 50, room.brightness - 50, room.brightness - 50)
 
     killer = shutdown.Detector()
     while not killer.kill_now:
