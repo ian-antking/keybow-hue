@@ -5,19 +5,21 @@ class Room:
     def __init__(self, hue_token, bridge_ip, room_name):
         self.room_name = room_name
         self.url = f'http://{bridge_ip}/api/{hue_token}'
-        self.setup_room()
+        self.update_room()
     
-    def setup_room(self):
+    def update_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
         room = [room for room in rooms.items() if room[1]['name'] == self.room_name][0]
         self.id = room[0]
-        self.room = room[1]
-        self.brightness = self.room['action']['bri']
+        self.state = room[1]
+
+    def get_state(self, property):
+        return self.state['action'][property]
 
     def change_brightness(self, payload):
         url = f'{self.url}/groups/{self.id}/action'
         response = requests.put(url, json.dumps(payload))
-        self.brightness = payload['bri'] if response.status_code == 200 else self.brightness
+        self.update_room()
 
     def dim(self):
         brightness = self.brightness - 50
@@ -31,9 +33,9 @@ class Room:
 
     def toggle_on_off(self):
         url = f'{self.url}/groups/{self.id}/action'
-        payload = { "on": not self.room['action']['on'] }
+        payload = { "on": not self.state['action']['on'] }
         response = requests.put(url, json.dumps(payload))
-        self.room['action']['on'] = payload['on'] if response.status_code == 200 else self.room['action']['on']
+        self.update_room()
 
 if __name__ == '__main__':
     from dotenv import load_dotenv
