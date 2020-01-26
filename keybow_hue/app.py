@@ -33,15 +33,15 @@ if __name__ == '__main__':
         room = hue.Room(hue_token, bridge_ip, room_name)
         keys = {
             0: {
-                'name': power,
+                'name': 'power',
                 'action': room.toggle_on_off
             },
             1: {
-                'name': dim,
+                'name': 'dim',
                 'action': room.dim
             },
             2: {
-                'name': brighten,
+                'name': 'brighten',
                 'action': room.brighten
             },
         }
