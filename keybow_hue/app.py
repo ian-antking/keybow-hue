@@ -15,7 +15,7 @@ def handle_key(index, state):
 
     if state:
         keybow.set_led(index, 0, 255, 0)
-        keys[index]['action']
+        keys[index]['action']()
     else:
         brightness = room.get_state('bri')
         keybow.set_led(index, brightness, brightness, brightness)
