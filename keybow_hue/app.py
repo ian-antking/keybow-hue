@@ -20,7 +20,7 @@ def handle_key(index, state):
         if index == 1:
             room.dim()
         if index == 0:
-            room.toggle_on_off():
+            room.toggle_on_off()
     else:
         keybow.set_led(index, room.brightness, room.brightness, room.brightness)
 
