@@ -33,7 +33,7 @@ class Room:
         url = f'{self.url}/groups/{self.id}/action'
         payload = { "on": not self.room['action']['on'] }
         response = requests.put(url, json.dumps(payload))
-        print(response.content)
+        self.room['action']['on'] = payload['on'] if response.status_code == 200 else self.room['action']['on']
 
 if __name__ == '__main__':
     from dotenv import load_dotenv
