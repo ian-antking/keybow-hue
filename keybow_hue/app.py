@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     killer = shutdown.Detector()
     for key in keys:
-        keybow.set_led(key, *keys[key][color]())
+        keybow.set_led(key, *keys[key]['color']())
     while not killer.kill_now:
         keybow.show()
         time.sleep(1.0 / 60.0)
