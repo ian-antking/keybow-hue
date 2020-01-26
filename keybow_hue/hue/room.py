@@ -12,23 +12,22 @@ class Room:
         room = [room for room in rooms.items() if room[1]['name'] == self.room_name][0]
         self.id = room[0]
         self.room = room[1]
+        self.brightness = self.room['action']['bri']
+
+    def change_brightness(self, payload):
+        url = f'{self.url}/groups/{self.id}/action'
+        response = requests.put(url, json.dumps(payload))
+        self.update_room()
 
     def dim_room(self):
-        url = f'{self.url}/groups/{self.id}/action'
-        brightness = self.room['action']['bri'] - 25
+        brightness = self.brightness - 50
         payload = { "bri": brightness if brightness >= 0 else 0 }
-        response = requests.put(url, json.dumps(payload))
-        print(response.json())
-        self.update_room()
+        self.change_brightness(payload)
 
     def brighten_room(self):
-        url = f'{self.url}/groups/{self.id}/action'
-        brightness = self.room['action']['bri'] + 25
+        brightness = self.brightness + 50
         payload = { "bri": brightness if brightness <= 254 else 254 }
-        response = requests.put(url, json.dumps(payload))
-        print(response.content)
-        self.update_room()
-
+        self.change_brightness(payload)
 
 if __name__ == '__main__':
     from dotenv import load_dotenv
