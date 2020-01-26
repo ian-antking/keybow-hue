@@ -15,12 +15,7 @@ def handle_key(index, state):
 
     if state:
         keybow.set_led(index, 0, 255, 0)
-        if index == 2:
-            room.brighten()
-        if index == 1:
-            room.dim()
-        if index == 0:
-            room.toggle_on_off()
+        keys[index]['action']
     else:
         brightness = room.get_state('bri')
         keybow.set_led(index, brightness, brightness, brightness)
@@ -36,6 +31,20 @@ if __name__ == '__main__':
         print('No config')
     else:
         room = hue.Room(hue_token, bridge_ip, room_name)
+        keys = {
+            0: {
+                'name': power,
+                'action': room.toggle_on_off
+            },
+            1: {
+                'name': dim,
+                'action': room.dim
+            },
+            2: {
+                'name': brighten,
+                'action': room.brighten
+            },
+        }
 
     killer = shutdown.Detector()
     while not killer.kill_now:
