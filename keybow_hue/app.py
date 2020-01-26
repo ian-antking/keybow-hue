@@ -23,6 +23,13 @@ def update_leds():
     for key in keys:
         keybow.set_led(key, *keys[key]['color']())
 
+def validate_brightness(brightness):
+    if brightness >= 255:
+        return 255
+    if brightness <= 0:
+        return 0
+    return brightness
+
 if __name__ == '__main__':
     hue_token = os.getenv('HUE_TOKEN')
     bridge_ip = os.getenv('BRIDGE_IP')
@@ -42,12 +49,12 @@ if __name__ == '__main__':
             1: {
                 'name': 'dim',
                 'action': room.dim,
-                'color': lambda: (room.get_state('bri') - 50, room.get_state('bri') - 50, room.get_state('bri') - 50)
+                'color': lambda: (validate_brightness(room.get_state('bri') - 50), validate_brightness(room.get_state('bri') - 50), validate_brightness(room.get_state('bri') - 50))
             },
             2: {
                 'name': 'brighten',
                 'action': room.brighten,
-                'color': lambda: (room.get_state('bri') + 50, room.get_state('bri') + 50, room.get_state('bri') + 50)
+                'color': lambda: (validate_brightness(room.get_state('bri') + 50), validate_brightness(room.get_state('bri') + 50), validate_brightness(room.get_state('bri') + 50))
             },
         }
 
