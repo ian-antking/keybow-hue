@@ -22,18 +22,18 @@ class Room:
         self.update_room()
 
     def dim(self):
-        brightness = self.brightness - 50
+        brightness = self.get_state('bri') - 50
         payload = { "bri": brightness if brightness >= 0 else 0 }
         self.change_brightness(payload)
 
     def brighten(self):
-        brightness = self.brightness + 50
+        brightness = self.get_state('bri') + 50
         payload = { "bri": brightness if brightness <= 254 else 254 }
         self.change_brightness(payload)
 
     def toggle_on_off(self):
         url = f'{self.url}/groups/{self.id}/action'
-        payload = { "on": not self.state['action']['on'] }
+        payload = { "on": not self.get_state('on') }
         response = requests.put(url, json.dumps(payload))
         self.update_room()
 
@@ -46,6 +46,6 @@ if __name__ == '__main__':
     room_name = os.getenv('ROOM_NAME')
 
     room = Room(hue_token, bridge_ip, room_name)
-    room.toggle_on_off()
+    room.brighten()
 
     
