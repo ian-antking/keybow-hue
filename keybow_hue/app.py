@@ -34,17 +34,17 @@ if __name__ == '__main__':
             0: {
                 'name': 'power',
                 'action': room.toggle_on_off,
-                'color': lambda on = room.get_state('on') : (0, 255, 0) if on else (255, 0, 0)
+                'color': lambda: (0, 255, 0) if room.get_state('on') else (255, 0, 0)
             },
             1: {
                 'name': 'dim',
                 'action': room.dim,
-                'color': lambda brightness = room.get_state('bri') - 50 : (brightness, brightness brightness)
+                'color': lambda: (room.get_state('bri') - 50, room.get_state('bri') - 50, room.get_state('bri') - 50,)
             },
             2: {
                 'name': 'brighten',
                 'action': room.brighten,
-                'color': lambda brightness = room.get_state('bri') + 50 : (brightness, brightness brightness)
+                'color': lambda: (room.get_state('bri') + 50, room.get_state('bri') + 50, room.get_state('bri') + 50,)
             },
         }
 
