@@ -17,7 +17,7 @@ def handle_key(index, state):
         keybow.set_led(index, 0, 255, 0)
         keys[index]['action']()
     else:
-        keybow.set_led(index, *keys[index][color]())
+        keybow.set_led(index, *keys[index]['color']())
 
 
 if __name__ == '__main__':
@@ -39,12 +39,12 @@ if __name__ == '__main__':
             1: {
                 'name': 'dim',
                 'action': room.dim,
-                'color': lambda: (room.get_state('bri') - 50, room.get_state('bri') - 50, room.get_state('bri') - 50,)
+                'color': lambda: (room.get_state('bri') - 50, room.get_state('bri') - 50, room.get_state('bri') - 50)
             },
             2: {
                 'name': 'brighten',
                 'action': room.brighten,
-                'color': lambda: (room.get_state('bri') + 50, room.get_state('bri') + 50, room.get_state('bri') + 50,)
+                'color': lambda: (room.get_state('bri') + 50, room.get_state('bri') + 50, room.get_state('bri') + 50)
             },
         }
 
