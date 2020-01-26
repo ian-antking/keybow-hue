@@ -45,7 +45,7 @@ if __name__ == '__main__':
         if room.get_state('on') == True:
             keybow.set_led(0, 0, 255, 0)
         else:
-            keybow.set_led(1, 255, 0, 0)
+            keybow.set_led(0, 255, 0, 0)
         keybow.show()
         time.sleep(1.0 / 60.0)
 
