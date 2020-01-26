@@ -29,6 +29,12 @@ class Room:
         payload = { "bri": brightness if brightness <= 254 else 254 }
         self.change_brightness(payload)
 
+    def toggle_on_off(self):
+        url = f'{self.url}/groups/{self.id}/action'
+        payload = { "on": not self.room['action']['on'] }
+        response = requests.put(url, json.dumps(payload))
+        print(response.content)
+
 if __name__ == '__main__':
     from dotenv import load_dotenv
     import os
@@ -38,6 +44,6 @@ if __name__ == '__main__':
     room_name = os.getenv('ROOM_NAME')
 
     room = Room(hue_token, bridge_ip, room_name)
-    room.brighten()
+    room.toggle_on_off()
 
     
