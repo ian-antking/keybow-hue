@@ -20,7 +20,7 @@ def handle_key(index, state):
         if index == 6:
             room.brighten()
     else:
-        keybow.set_led(index, 0, 0, 0)
+        keybow.set_led(index, room.brightness, room.brightness, room.brightness)
 
 
 if __name__ == '__main__':
