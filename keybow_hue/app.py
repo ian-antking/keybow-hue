@@ -42,7 +42,7 @@ if __name__ == '__main__':
         brightness = room.get_state('bri')
         keybow.set_led(2, brightness + 50, brightness + 50, brightness + 50)
         keybow.set_led(1, brightness - 50, brightness - 50, brightness - 50)
-        if room.get_state('on') == 'True':
+        if room.get_state('on') == 'true':
             keybow.set_led(1, 0, 255, 0)
         else:
             keybow.set_led(1, 255, 0, 0)
