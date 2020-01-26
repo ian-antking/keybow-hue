@@ -18,7 +18,7 @@ def handle_key(index, state):
         keys[index]['action']()
     else:
         brightness = room.get_state('bri')
-        keybow.set_led(index, brightness, brightness, brightness)
+        keybow.set_led(index, keys[index][color])
 
 
 if __name__ == '__main__':
@@ -34,27 +34,23 @@ if __name__ == '__main__':
         keys = {
             0: {
                 'name': 'power',
-                'action': room.toggle_on_off
+                'action': room.toggle_on_off,
+                'color': (0, 255, 0) if room.get_state('on') else (255, 0, 0)
             },
             1: {
                 'name': 'dim',
-                'action': room.dim
+                'action': room.dim,
+                'color': (room.get_state('bri') - 50, room.get_state('bri') - 50, room.get_state('bri') - 50)
             },
             2: {
                 'name': 'brighten',
-                'action': room.brighten
+                'action': room.brighten,
+                'color': (room.get_state('bri') + 50, room.get_state('bri') + 50, room.get_state('bri') + 50)
             },
         }
 
     killer = shutdown.Detector()
     while not killer.kill_now:
-        brightness = room.get_state('bri')
-        keybow.set_led(2, brightness + 50, brightness + 50, brightness + 50)
-        keybow.set_led(1, brightness - 50, brightness - 50, brightness - 50)
-        if room.get_state('on') == True:
-            keybow.set_led(0, 0, 255, 0)
-        else:
-            keybow.set_led(0, 255, 0, 0)
         keybow.show()
         time.sleep(1.0 / 60.0)
 
