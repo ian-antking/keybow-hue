@@ -19,10 +19,9 @@ def handle_key(index, state):
     else:
         update_leds()
 
-def update_leds() {
+def update_leds():
     for key in keys:
         keybow.set_led(key, *keys[key]['color']())
-}
 
 if __name__ == '__main__':
     hue_token = os.getenv('HUE_TOKEN')
