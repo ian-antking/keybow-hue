@@ -1,1 +1,1 @@
-from hue.room import room
+from hue.room import Room
