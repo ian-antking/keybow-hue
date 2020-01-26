@@ -14,11 +14,15 @@ dimmer_keys = [1, 2]
 def handle_key(index, state):
 
     if state:
-        keybow.set_led(index, 0, 255, 0)
+        keybow.set_led(index, 0, 0, 255)
         keys[index]['action']()
     else:
-        keybow.set_led(index, *keys[index]['color']())
+        update_leds()
 
+def update_leds() {
+    for key in keys:
+        keybow.set_led(key, *keys[key]['color']())
+}
 
 if __name__ == '__main__':
     hue_token = os.getenv('HUE_TOKEN')
@@ -49,8 +53,7 @@ if __name__ == '__main__':
         }
 
     killer = shutdown.Detector()
-    for key in keys:
-        keybow.set_led(key, *keys[key]['color']())
+    update_leds()
     while not killer.kill_now:
         keybow.show()
         time.sleep(1.0 / 60.0)
