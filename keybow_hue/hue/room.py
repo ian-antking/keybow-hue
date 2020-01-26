@@ -3,16 +3,31 @@ import json
 
 class Room:
     def __init__(self, hue_token, bridge_ip, room_name):
-        self.token = hue_token
-        self.bridge = bridge_ip
         self.room_name = room_name
         self.url = f'http://{bridge_ip}/api/{hue_token}'
-        self.lights = self.get_lights()
+        self.update_room()
     
-    def get_lights(self):
+    def update_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
-        return [room[1] for room in rooms.items() if room[1]['name'] == self.room_name][0]['lights']
+        room = [room for room in rooms.items() if room[1]['name'] == self.room_name][0]
+        self.id = room[0]
+        self.room = room[1]
 
+    def dim_room(self):
+        url = f'{self.url}/groups/{self.id}/action'
+        brightness = self.room['action']['bri'] - 25
+        payload = { "bri": brightness if brightness >= 0 else 0 }
+        response = requests.put(url, json.dumps(payload))
+        print(response.json())
+        self.update_room()
+
+    def brighten_room(self):
+        url = f'{self.url}/groups/{self.id}/action'
+        brightness = self.room['action']['bri'] + 25
+        payload = { "bri": brightness if brightness <= 254 else 254 }
+        response = requests.put(url, json.dumps(payload))
+        print(response.content)
+        self.update_room()
 
 
 if __name__ == '__main__':
@@ -24,6 +39,6 @@ if __name__ == '__main__':
     room_name = os.getenv('ROOM_NAME')
 
     room = Room(hue_token, bridge_ip, room_name)
-    print(room.lights)
+    room.brighten_room()
 
     
