@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import keybow
-import time
 import shutdown
 import hue
+import time
 from dotenv import load_dotenv
 import os
 
@@ -26,9 +26,11 @@ def handle_key(index, state):
 if __name__ == '__main__':
     hue_token = os.getenv('HUE_TOKEN')
     bridge_ip = os.getenv('BRIDGE_IP')
+    room_name = os.getenv('ROOM_NAME')
 
     if not hue_token or not bridge_ip:
         keybow.set_all(255, 0, 0)
+        print('No config')
     else:
         for key in control_keys:
             keybow.set_led(key, 127, 127, 127)
