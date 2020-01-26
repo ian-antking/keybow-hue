@@ -5,9 +5,9 @@ class Room:
     def __init__(self, hue_token, bridge_ip, room_name):
         self.room_name = room_name
         self.url = f'http://{bridge_ip}/api/{hue_token}'
-        self.update_room()
+        self.setup_room()
     
-    def update_room(self):
+    def setup_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
         room = [room for room in rooms.items() if room[1]['name'] == self.room_name][0]
         self.id = room[0]
@@ -17,7 +17,7 @@ class Room:
     def change_brightness(self, payload):
         url = f'{self.url}/groups/{self.id}/action'
         response = requests.put(url, json.dumps(payload))
-        self.update_room()
+        self.brightness = payload['bri'] if response.status_code == 200 else self.brightness
 
     def dim_room(self):
         brightness = self.brightness - 50
