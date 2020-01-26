@@ -32,10 +32,9 @@ if __name__ == '__main__':
         keybow.set_all(255, 0, 0)
         print('No config')
     else:
-        for key in control_keys:
-            keybow.set_led(6, room.brightness - 50, room.brightness - 50, room.brightness - 50)
-            keybow.set_led(3, room.brightness + 50, room.brightness + 50, room.brightness + 50)
-            room = hue.Room(hue_token, bridge_ip, room_name)
+        keybow.set_led(6, room.brightness - 50, room.brightness - 50, room.brightness - 50)
+        keybow.set_led(3, room.brightness + 50, room.brightness + 50, room.brightness + 50)
+        room = hue.Room(hue_token, bridge_ip, room_name)
 
     killer = shutdown.Detector()
     while not killer.kill_now:
