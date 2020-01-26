@@ -2,6 +2,7 @@
 import keybow
 import time
 import shutdown
+import hue
 from dotenv import load_dotenv
 import os
 
@@ -14,6 +15,10 @@ def handle_key(index, state):
 
     if state:
         keybow.set_led(index, 0, 255, 0)
+        if index == 3:
+            room.dim()
+        if index == 6:
+            room.brighten()
     else:
         keybow.set_led(index, 0, 0, 0)
 
@@ -27,6 +32,7 @@ if __name__ == '__main__':
     else:
         for key in control_keys:
             keybow.set_led(key, 127, 127, 127)
+            room = hue.Room(hue_token, bridge_ip, room_name)
 
     killer = shutdown.Detector()
     while not killer.kill_now:

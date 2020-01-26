@@ -19,12 +19,12 @@ class Room:
         response = requests.put(url, json.dumps(payload))
         self.brightness = payload['bri'] if response.status_code == 200 else self.brightness
 
-    def dim_room(self):
+    def dim(self):
         brightness = self.brightness - 50
         payload = { "bri": brightness if brightness >= 0 else 0 }
         self.change_brightness(payload)
 
-    def brighten_room(self):
+    def brighten(self):
         brightness = self.brightness + 50
         payload = { "bri": brightness if brightness <= 254 else 254 }
         self.change_brightness(payload)
@@ -38,6 +38,6 @@ if __name__ == '__main__':
     room_name = os.getenv('ROOM_NAME')
 
     room = Room(hue_token, bridge_ip, room_name)
-    room.brighten_room()
+    room.brighten()
 
     
