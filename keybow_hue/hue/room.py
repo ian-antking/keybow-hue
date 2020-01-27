@@ -14,6 +14,16 @@ class Room:
         group_scenes = [scene for scene in scenes.items() if scene[1]['type'] == 'GroupScene']
         self.scenes = [scene[0] for scene in group_scenes if scene[1]['group'] == self.id]
 
+    def get_scene(self, scene_id):
+        response = requests.get(f'{self.url}/scenes/{scene_id}')
+        return response.json()
+
+    def set_scene(self, scene_id):
+        url = f'{self.url}/groups/0/action'
+        payload = { 'scene': scene_id }
+        response = requests.put(url, json.dumps(payload))
+        self.update_room()
+
     def update_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
         room = [room for room in rooms.items() if room[1]['name'] == self.name][0]
