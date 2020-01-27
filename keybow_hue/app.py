@@ -3,10 +3,7 @@ import keybow
 import shutdown
 import hue
 import time
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+import config_loader
 
 dimmer_keys = [1, 2]
 
@@ -31,15 +28,14 @@ def validate_brightness(brightness):
     return brightness
 
 if __name__ == '__main__':
-    hue_token = os.getenv('HUE_TOKEN')
-    bridge_ip = os.getenv('BRIDGE_IP')
-    room_name = os.getenv('ROOM_NAME')
+    env_vars = ['HUE_TOKEN', 'BRIDGE_IP', 'ROOM_NAME']
+    config = config_loader.load(env_vars)
 
-    if not hue_token or not bridge_ip or not room_name:
+    if not config['HUE_TOKEN'] or not config['BRIDGE_IP'] or not config['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
         print('No config')
     else:
-        room = hue.Room(hue_token, bridge_ip, room_name)
+        room = hue.Room(config)
         keys = {
             0: {
                 'name': 'dim',
