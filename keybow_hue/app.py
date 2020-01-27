@@ -38,17 +38,14 @@ if __name__ == '__main__':
         room = hue.Room(config)
         keys = {
             0: {
-                'name': 'dim',
                 'action': room.dim,
                 'color': lambda: [validate_brightness(room.get_state('bri') - 50)] * 3 if room.get_state('on') else [0] * 3
             },
             1: {
-                'name': 'power',
                 'action': room.toggle_on_off,
                 'color': lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0)
             },
             2: {
-                'name': 'brighten',
                 'action': room.brighten,
                 'color': lambda: [validate_brightness(room.get_state('bri') + 50)] * 3 if room.get_state('on') else [0] * 3
             },
