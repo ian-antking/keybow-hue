@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import keybow
+# import keybow
 import shutdown
 import hue
 import time
@@ -31,7 +31,6 @@ if __name__ == '__main__':
 
     if not config['HUE_TOKEN'] or not config['BRIDGE_IP'] or not config['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
-        print('No config')
     else:
         room = hue.Room(config)
         keys = {
@@ -48,9 +47,9 @@ if __name__ == '__main__':
                 'color': lambda: [validate_brightness(room.get_state('bri') + 50)] * 3 if room.get_state('on') else [0] * 3
             },
         }
+        update_leds()
 
     killer = shutdown.Detector()
-    update_leds()
     while not killer.kill_now:
         keybow.show()
         time.sleep(1.0 / 60.0)
