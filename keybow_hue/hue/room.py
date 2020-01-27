@@ -5,7 +5,7 @@ class Room:
     def __init__(self, config):
         self.name = config['ROOM_NAME']
         self.url = f"http://{config['BRIDGE_IP']}/api/{config['HUE_TOKEN']}"
-        # self.update_room()
+        self.update_room()
     
     def update_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
