@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# import keybow
+import keybow
 import shutdown
 import hue
 import time
