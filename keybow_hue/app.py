@@ -44,7 +44,7 @@ if __name__ == '__main__':
             0: {
                 'name': 'power',
                 'action': room.toggle_on_off,
-                'color': lambda: (0, 255, 0) if room.get_state('on') else (255, 0, 0)
+                'color': lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0)
             },
             1: {
                 'name': 'dim',
