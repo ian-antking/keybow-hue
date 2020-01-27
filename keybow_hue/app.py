@@ -35,7 +35,7 @@ if __name__ == '__main__':
     bridge_ip = os.getenv('BRIDGE_IP')
     room_name = os.getenv('ROOM_NAME')
 
-    if not hue_token or not bridge_ip:
+    if not hue_token or not bridge_ip or not room_name:
         keybow.set_all(255, 0, 0)
         print('No config')
     else:
