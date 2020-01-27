@@ -49,12 +49,12 @@ if __name__ == '__main__':
             1: {
                 'name': 'dim',
                 'action': room.dim,
-                'color': lambda: (validate_brightness(room.get_state('bri') - 50), validate_brightness(room.get_state('bri') - 50), validate_brightness(room.get_state('bri') - 50))
+                'color': lambda: [validate_brightness(room.get_state('bri') - 50)] * 3
             },
             2: {
                 'name': 'brighten',
                 'action': room.brighten,
-                'color': lambda: (validate_brightness(room.get_state('bri') + 50), validate_brightness(room.get_state('bri') + 50), validate_brightness(room.get_state('bri') + 50))
+                'color': lambda: [validate_brightness(room.get_state('bri') + 50)] * 3
             },
         }
 
