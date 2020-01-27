@@ -21,7 +21,7 @@ def handle_key(index, state):
 
 def update_leds():
     for key in keys:
-        keybow.set_led(key, *keys[key]['color']())
+        keybow.set_led(key, *keys[key]['color']() or [0] * 3)
 
 def validate_brightness(brightness):
     if brightness >= 255:
