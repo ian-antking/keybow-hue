@@ -6,7 +6,14 @@ class Room:
         self.name = config['ROOM_NAME']
         self.url = f"http://{config['BRIDGE_IP']}/api/{config['HUE_TOKEN']}"
         self.update_room()
-    
+        self.get_scenes()
+
+    def get_scenes(self):
+        response = requests.get(f'{self.url}/scenes')
+        scenes = response.json()
+        group_scenes = [scene for scene in scenes.items() if scene[1]['type'] == 'GroupScene']
+        self.scenes = [scene[0] for scene in group_scenes if scene[1]['group'] == self.id]
+
     def update_room(self):
         rooms = requests.get(f'{self.url}/groups').json()
         room = [room for room in rooms.items() if room[1]['name'] == self.name][0]
@@ -38,6 +45,16 @@ class Room:
         self.update_room()
 
 if __name__ == '__main__':
+    from dotenv import load_dotenv
+    import os
+
+    load_dotenv()
+    config_vars = ['HUE_TOKEN', 'BRIDGE_IP', 'ROOM_NAME']
+    env_variables = {}
+    for var in config_vars:
+        env_variables[var] = os.getenv(var)
+
+    room = Room(env_variables)
     exit()
 
     
