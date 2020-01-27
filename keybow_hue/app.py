@@ -5,8 +5,6 @@ import hue
 import time
 import config_loader
 
-dimmer_keys = [1, 2]
-
 @keybow.on()
 def handle_key(index, state):
 
