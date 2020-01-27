@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 def load(args=[]):
     env_variables = {}
     for arg in args:
