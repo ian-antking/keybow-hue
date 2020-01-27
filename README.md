@@ -35,4 +35,4 @@ Open a terminal, and run this command from the project root:
 python3 keybow_hue/app.py 
 ```
 
-If no config variables are found, all key will turn red. Otherwise, key 0 turn red/green depending on if the lights in your room are currently on. If they are on, keys 1 & 2 can be used to adjust the brightness.
+If no config variables are found, all keys will turn red. Otherwise, key 1 will turn red/green depending on if the lights in your room are currently on. If they are on, keys 0 & 2 can be used to adjust the brightness.
