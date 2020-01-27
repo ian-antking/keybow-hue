@@ -9,5 +9,5 @@ def load(args=[]):
 
 if __name__ == '__main__':
     config_vars = ['HUE_TOKEN', 'BRIDGE_IP', 'ROOM_NAME']
-    config = loader(config_vars)
+    config = load(config_vars)
     print(config)
