@@ -13,7 +13,6 @@ Create a file in the root of the project called `.env`. Add the following:
 
 ```
 HUE_TOKEN=<hue bridge access token>
-BRIDGE_IP=<ip address of hue bridge>
 ROOM_NAME=<name of room being controlled (in "" if more than one word)>
 ```
 

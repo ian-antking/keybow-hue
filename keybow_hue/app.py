@@ -29,7 +29,7 @@ if __name__ == '__main__':
     env_vars = ['HUE_TOKEN', 'ROOM_NAME']
     config = config_loader.load(env_vars)
 
-    if not config['HUE_TOKEN'] or not config['BRIDGE_IP'] or not config['ROOM_NAME']:
+    if not config['HUE_TOKEN'] or not config['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
     else:
         room = hue.Room(config)
