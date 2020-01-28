@@ -39,5 +39,4 @@ class Bridge:
         return response.status_code
 
 if __name__ == '__main__':
-    bridge = Bridge('wJoySP272OAS8vAKz3SCbm2fUjuoJfsEuaKuRJr5')
-    print(bridge.bridge_url)
+    exit()
