@@ -32,7 +32,7 @@ if __name__ == '__main__':
     if not config['HUE_TOKEN'] or not config['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
     else:
-        room = hue.Room(config)
+        room = hue.Room(config['ROOM_NAME'], hue.Bridge(config['HUE_TOKEN']))
         keys = {
             0: {
                 'action': room.dim,

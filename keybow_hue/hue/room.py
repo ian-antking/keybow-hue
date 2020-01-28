@@ -1,11 +1,10 @@
 import requests
 import json
-from hue.bridge import Bridge
 
 class Room:
-    def __init__(self, config):
-        self.name = config['ROOM_NAME']
-        self.bridge = Bridge(config['HUE_TOKEN'])
+    def __init__(self, room_name, bridge):
+        self.name = room_name
+        self.bridge = bridge
         room_data = self.bridge.get_room(self.name)
         self.id = room_data['id']
         self.state = room_data['state']
@@ -36,17 +35,5 @@ class Room:
         self.update_room()
 
 if __name__ == '__main__':
-    from dotenv import load_dotenv
-    import os
-
-    load_dotenv()
-    config_vars = ['HUE_TOKEN', 'ROOM_NAME']
-    env_variables = {}
-    for var in config_vars:
-        env_variables[var] = os.getenv(var)
-
-    room = Room(env_variables)
-    room.toggle_on_off()
     exit()
-
     
