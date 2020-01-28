@@ -1,6 +1,6 @@
 import requests
 import json
-from hue.bridge import Bridge
+from bridge import Bridge
 
 class Room:
     def __init__(self, config):
@@ -13,7 +13,7 @@ class Room:
 
     def update_room(self):
         room_data = self.bridge.get_room(self.name)
-        self.state = room_data[1]
+        self.state = room_data['state']
 
     def get_state(self, property):
         return self.state['action'][property]
@@ -46,6 +46,7 @@ if __name__ == '__main__':
         env_variables[var] = os.getenv(var)
 
     room = Room(env_variables)
+    room.toggle_on_off()
     exit()
 
     
