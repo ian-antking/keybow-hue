@@ -2,8 +2,9 @@ import requests
 import json
 
 class Bridge:
-    def __init__(self, bridge_ip, hue_token):
-        self.bridge_url = f"http://{bridge_ip}/api/{hue_token}"
+    def __init__(self, hue_token):
+        self.bridge_ip = self.resolve_bridge_ip()
+        self.bridge_url = f"http://{self.bridge_ip}/api/{hue_token}"
 
     def get_room(self, room_name):
         rooms = requests.get(f'{self.bridge_url}/groups').json()
@@ -12,6 +13,10 @@ class Bridge:
             'id': room[0],
             'state': room[1]
         }
+
+    def resolve_bridge_ip(self):
+        response = requests.get('https://discovery.meethue.com/')
+        return response.json()[0]['internalipaddress']
 
     def get_scenes(self, room_id):
         scenes = requests.get(f'{self.bridge_url}/scenes').json()
@@ -34,4 +39,5 @@ class Bridge:
         return response.status_code
 
 if __name__ == '__main__':
-    print('Bridge Object')
+    bridge = Bridge('wJoySP272OAS8vAKz3SCbm2fUjuoJfsEuaKuRJr5')
+    print(bridge.bridge_url)

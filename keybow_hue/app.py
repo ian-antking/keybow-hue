@@ -26,7 +26,7 @@ def validate_brightness(brightness):
     return brightness
 
 if __name__ == '__main__':
-    env_vars = ['HUE_TOKEN', 'BRIDGE_IP', 'ROOM_NAME']
+    env_vars = ['HUE_TOKEN', 'ROOM_NAME']
     config = config_loader.load(env_vars)
 
     if not config['HUE_TOKEN'] or not config['BRIDGE_IP'] or not config['ROOM_NAME']:

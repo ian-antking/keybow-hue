@@ -6,7 +6,7 @@ class Room:
     def __init__(self, config):
         self.name = config['ROOM_NAME']
         self.url = f"http://{config['BRIDGE_IP']}/api/{config['HUE_TOKEN']}"
-        self.bridge = Bridge(config['BRIDGE_IP'], config['HUE_TOKEN'])
+        self.bridge = Bridge(config['HUE_TOKEN'])
         room_data = self.bridge.get_room(self.name)
         self.id = room_data['id']
         self.state = room_data['state']
