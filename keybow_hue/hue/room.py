@@ -1,6 +1,6 @@
 import requests
 import json
-from bridge import Bridge
+from hue.bridge import Bridge
 
 class Room:
     def __init__(self, config):
