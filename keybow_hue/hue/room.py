@@ -5,7 +5,6 @@ from hue.bridge import Bridge
 class Room:
     def __init__(self, config):
         self.name = config['ROOM_NAME']
-        self.url = f"http://{config['BRIDGE_IP']}/api/{config['HUE_TOKEN']}"
         self.bridge = Bridge(config['HUE_TOKEN'])
         room_data = self.bridge.get_room(self.name)
         self.id = room_data['id']
@@ -23,15 +22,18 @@ class Room:
         brightness = self.get_state('bri') - 50
         payload = { "bri": brightness if brightness >= 0 else 0 }
         self.bridge.update_group(self.id, payload)
+        self.update_room()
 
     def brighten(self):
         brightness = self.get_state('bri') + 50
         payload = { "bri": brightness if brightness <= 254 else 254 }
         self.bridge.update_group(self.id, payload)
+        self.update_room()
 
     def toggle_on_off(self):
         payload = { "on": not self.get_state('on') }
         self.bridge.update_group(self.id, payload)
+        self.update_room()
 
 if __name__ == '__main__':
     from dotenv import load_dotenv
