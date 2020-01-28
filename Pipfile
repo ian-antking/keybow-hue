@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 nose = "*"
 autopep8 = "*"
+pylint = "*"
 
 [packages]
 keybow = "==0.0.2"
