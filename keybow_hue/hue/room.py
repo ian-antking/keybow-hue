@@ -40,7 +40,7 @@ if __name__ == '__main__':
     import os
 
     load_dotenv()
-    config_vars = ['HUE_TOKEN', 'BRIDGE_IP', 'ROOM_NAME']
+    config_vars = ['HUE_TOKEN', 'ROOM_NAME']
     env_variables = {}
     for var in config_vars:
         env_variables[var] = os.getenv(var)
