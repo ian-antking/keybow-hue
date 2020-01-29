@@ -4,7 +4,7 @@ import shutdown
 import hue
 import time
 import config
-
+from constants import DISCOVERY_URL
 
 @keybow.on()
 def handle_key(index, state):
@@ -32,7 +32,7 @@ def validate_brightness(brightness):
 if __name__ == '__main__':
     try:
         conf = config.Env(['HUE_TOKEN', 'ROOM_NAME'])
-        room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN']))
+        room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], DISCOVERY_URL))
         keys = {
             0: {
                 'action': room.dim,
