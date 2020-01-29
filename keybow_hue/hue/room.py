@@ -1,5 +1,3 @@
-import json
-
 class Room:
     def __init__(self, room_name, bridge):
         self.name = room_name
