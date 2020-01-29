@@ -44,7 +44,7 @@ if __name__ == '__main__':
                 'color': lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0)
             },
             2: {
-                'action': room.brighten,
+                'action': room.bright,
                 'color': lambda: [validate_brightness(room.get_state('bri') + 50)] * 3 if room.get_state('on') else [0] * 3
             },
         }

@@ -22,7 +22,7 @@ class Room:
         self.bridge.update_group(self.id, payload)
         self.update_room()
 
-    def brighten(self):
+    def bright(self):
         brightness = self.get_state('bri') + 50
         payload = { "bri": brightness if brightness <= 254 else 254 }
         self.bridge.update_group(self.id, payload)
