@@ -6,6 +6,7 @@ import time
 import config
 import requests
 
+
 @keybow.on()
 def handle_key(index, state):
 
@@ -15,9 +16,11 @@ def handle_key(index, state):
     else:
         update_leds()
 
+
 def update_leds():
     for key in keys:
         keybow.set_led(key, *keys[key]['color']())
+
 
 def validate_brightness(brightness):
     if brightness >= 255:
@@ -26,14 +29,12 @@ def validate_brightness(brightness):
         return 0
     return brightness
 
-if __name__ == '__main__':
-    env_vars = ['HUE_TOKEN', 'ROOM_NAME']
-    conf = config.Env(env_vars)
 
-    if not conf.env['HUE_TOKEN'] or not conf.env['ROOM_NAME']:
-        keybow.set_all(255, 0, 0)
-    else:
-        room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], requests))
+if __name__ == '__main__':
+    try:
+        conf = config.Env(['HUE_TOKEN', 'ROOM_NAME'])
+        room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(
+            conf.env['HUE_TOKEN'], requests))
         keys = {
             0: {
                 'action': room.dim,
@@ -49,6 +50,8 @@ if __name__ == '__main__':
             },
         }
         update_leds()
+    except TypeError:
+        keybow.set_all(255, 0, 0)
 
     killer = shutdown.Detector()
     while not killer.kill_now:
