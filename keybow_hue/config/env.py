@@ -5,11 +5,11 @@ load_dotenv()
 
 class Env:
     def __init__(self, args=[]):
-        self.var = {}
+        self.env = {}
         for arg in args:
-            self.var[arg] = os.getenv(arg)
+            self.env[arg] = os.getenv(arg)
 
 if __name__ == '__main__':
     config_vars = ['HUE_TOKEN', 'ROOM_NAME']
-    config = Env(config_vars)
-    print(config.var)
+    conf = Env(config_vars)
+    print(conf.env)

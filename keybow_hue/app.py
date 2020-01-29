@@ -28,12 +28,12 @@ def validate_brightness(brightness):
 
 if __name__ == '__main__':
     env_vars = ['HUE_TOKEN', 'ROOM_NAME']
-    config = config.Env(env_vars)
+    conf = config.Env(env_vars)
 
-    if not config.var['HUE_TOKEN'] or not config.var['ROOM_NAME']:
+    if not conf.env['HUE_TOKEN'] or not conf.env['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
     else:
-        room = hue.Room(config.var['ROOM_NAME'], hue.Bridge(config.var['HUE_TOKEN'], requests))
+        room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], requests))
         keys = {
             0: {
                 'action': room.dim,
