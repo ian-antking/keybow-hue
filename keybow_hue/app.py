@@ -3,7 +3,7 @@ import keybow
 import shutdown
 import hue
 import time
-import config_loader
+import config
 
 @keybow.on()
 def handle_key(index, state):
@@ -27,12 +27,12 @@ def validate_brightness(brightness):
 
 if __name__ == '__main__':
     env_vars = ['HUE_TOKEN', 'ROOM_NAME']
-    config = config_loader.load(env_vars)
+    config = config.Env(env_vars)
 
-    if not config['HUE_TOKEN'] or not config['ROOM_NAME']:
+    if not config.var['HUE_TOKEN'] or not config.var['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
     else:
-        room = hue.Room(config['ROOM_NAME'], hue.Bridge(config['HUE_TOKEN']))
+        room = hue.Room(config.var['ROOM_NAME'], hue.Bridge(config.var['HUE_TOKEN']))
         keys = {
             0: {
                 'action': room.dim,
