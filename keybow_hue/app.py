@@ -4,6 +4,7 @@ import shutdown
 import hue
 import time
 import config
+import requests
 
 @keybow.on()
 def handle_key(index, state):
@@ -32,7 +33,7 @@ if __name__ == '__main__':
     if not config.var['HUE_TOKEN'] or not config.var['ROOM_NAME']:
         keybow.set_all(255, 0, 0)
     else:
-        room = hue.Room(config.var['ROOM_NAME'], hue.Bridge(config.var['HUE_TOKEN']))
+        room = hue.Room(config.var['ROOM_NAME'], hue.Bridge(config.var['HUE_TOKEN'], requests))
         keys = {
             0: {
                 'action': room.dim,
