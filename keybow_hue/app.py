@@ -12,7 +12,7 @@ class App():
             self.keyboard = state.Keyboard(self.room)
             self.update_leds()
         except TypeError:
-            keybow.set_all(255, 0, 0)
+            self.led_controller.set_all(255, 0, 0)
 
     def update_leds(self):
         for key in self.keyboard.keys:
