@@ -12,9 +12,23 @@ class App():
             print(error)
             self.led_controller.set_all(255, 0, 0)
 
+    def validate_brightness(self, brightness):
+        if brightness >= 255:
+            return 255
+        if brightness <= 0:
+            return 0
+        return brightness
+
+    def validate_color(self, color):
+        validated_color = []
+        for value in color:
+            validated_color.append(self.validate_brightness(value))
+        return validated_color
+
     def update_leds(self):
         for key in self.state.keyboards[self.state.mode]:
-            self.led_controller.set_led(key.index, *self.state.keyboards[self.state.mode][key.index].color())
+            color = self.validate_color(*self.state.keyboards[self.state.mode][key.index].color())
+            self.led_controller.set_led(key.index, color)
 
     def execute_action(self, index):
         self.state.keyboards[self.state.mode][index].action()
