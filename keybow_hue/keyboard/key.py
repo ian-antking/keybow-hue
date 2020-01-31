@@ -1,6 +1,6 @@
 class Key:
-    def __init__(self, index, function, color):
+    def __init__(self, index, action, color):
         self.index = index
-        self.function = function
+        self.action = action
         self.color = color
 
