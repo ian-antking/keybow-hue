@@ -51,7 +51,8 @@ if __name__ == '__main__':
         keyboard.Key(2, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3)
     ]
 
-    state_engine = state.Engine([keyboard_one])
+    state_engine = state.Engine()
+    state_engine.add_keyboard(keyboard_one)
     app = App(hue, state_engine, keybow)
 
     @keybow.on()
