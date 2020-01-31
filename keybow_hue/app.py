@@ -8,7 +8,8 @@ class App():
             self.state = state
             self.led_controller = led_controller
             self.update_leds()
-        except TypeError:
+        except TypeError as error:
+            print(error)
             self.led_controller.set_all(255, 0, 0)
 
     def update_leds(self):
