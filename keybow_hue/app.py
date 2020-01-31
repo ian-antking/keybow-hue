@@ -2,14 +2,11 @@
 from constants import DISCOVERY_URL
 
 class App():
-    def __init__(self, config_manager, hue_manager, led_controller, state):
+    def __init__(self, room, state, led_controller):
         try:
-            conf = config_manager.Env(['HUE_TOKEN', 'ROOM_NAME'])
-            room_name = conf.env['ROOM_NAME']
-            token = conf.env['HUE_TOKEN']
+            self.room = room
+            self.state = state
             self.led_controller = led_controller
-            self.room = hue_manager.Room(room_name, hue_manager.Bridge(token, DISCOVERY_URL))
-            self.state = state.Engine([state.Keyboard(self.room)])
             self.update_leds()
         except TypeError:
             self.led_controller.set_all(255, 0, 0)
@@ -23,13 +20,24 @@ class App():
 
 if __name__ == '__main__':
     import keybow
+    import keyboard
     import shutdown
     import hue
     import time
     import config
     import state
     
-    app = App(config, hue, keybow, state)
+    conf = config.Env(['HUE_TOKEN', 'ROOM_NAME'])
+    room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], DISCOVERY_URL))
+
+    keyboard_one = [
+        keyboard.Key(0, room.dim, lambda: [room.get_state('bri') - 50] * 3 if room.get_state('on') else [0] * 3),
+        keyboard.Key(1, room.toggle_on_off, lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0)),
+        keyboard.Key(2, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3)
+    ]
+
+    state_engine = state.Engine([keyboard_one])
+    app = App(hue, keybow, state_engine)
 
     @keybow.on()
     def handle_key(index, state):
@@ -39,6 +47,7 @@ if __name__ == '__main__':
             app.execute_action(index)
         else:
             app.update_leds()
+
 
     killer = shutdown.Detector()
     while not killer.kill_now:
