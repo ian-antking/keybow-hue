@@ -14,7 +14,7 @@ class App():
 
     def update_leds(self):
         for key in self.state.keyboards[self.state.mode]:
-            self.led_controller.set_led(key, *self.state.keyboards[self.state.mode][key].color())
+            self.led_controller.set_led(key.index, *self.state.keyboards[self.state.mode][key.index].color())
 
     def execute_action(self, index):
         self.state.keyboards[self.state.mode][index].action()
