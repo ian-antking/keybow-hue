@@ -37,7 +37,7 @@ if __name__ == '__main__':
     ]
 
     state_engine = state.Engine([keyboard_one])
-    app = App(hue, keybow, state_engine)
+    app = App(hue, state_engine, keybow)
 
     @keybow.on()
     def handle_key(index, state):
