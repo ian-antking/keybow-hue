@@ -4,3 +4,8 @@ class Key:
         self.action = action
         self.color = color
 
+    def execute_action(self):
+        self.action()
+
+    def get_color(self):
+        return self.color()

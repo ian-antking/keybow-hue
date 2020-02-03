@@ -27,11 +27,11 @@ class App():
 
     def update_leds(self):
         for key in self.state.keyboards[self.state.mode].keys:
-            color = self.validate_color(self.state.get_keyboard().get_key(key)['color']())
+            color = self.validate_color(self.state.get_keyboard().get_key(key).get_color())
             self.led_controller.set_led(key, *color)
 
     def execute_action(self, index):
-        self.state.get_keyboard().get_key(index)['action']()
+        self.state.get_keyboard().get_key(index).execute_action()
 
 if __name__ == '__main__':
     import keybow
