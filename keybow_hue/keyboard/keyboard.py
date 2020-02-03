@@ -8,6 +8,9 @@ class Keyboard:
             'color': key.color
         }
 
+    def get_key(self, index):
+        return self.keys[index]
+
 
 if __name__ == '__main__':
     exit()
