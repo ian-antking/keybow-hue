@@ -31,7 +31,7 @@ class App():
             self.led_controller.set_led(key, *color)
 
     def execute_action(self, index):
-        self.state.keyboards[self.state.mode][index].action()
+        self.state.keyboards[self.state.mode].keys[index]['action']()
 
 if __name__ == '__main__':
     import keybow
