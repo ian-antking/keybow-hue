@@ -3,9 +3,9 @@ class Keyboard:
         self.keys = {}
 
     def add_key(self, key):
-        self.keys[key['index']] = {
-            'action': key['action'],
-            'color': key['color']
+        self.keys[key.index] = {
+            'action': key.action,
+            'color': key.color
         }
 
 
