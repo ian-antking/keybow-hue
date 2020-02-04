@@ -26,7 +26,7 @@ class App():
         return validated_color
 
     def update_leds(self):
-        for key in self.state.get_keyboard().keys:
+        for key in self.state.keyboards[self.state.mode].keys:
             color = self.validate_color(key.color())
             self.led_controller.set_led(key, *color)
 
