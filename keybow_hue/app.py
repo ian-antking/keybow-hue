@@ -3,14 +3,11 @@ from constants import DISCOVERY_URL
 
 class App():
     def __init__(self, room, state, led_controller):
-        try:
-            self.room = room
-            self.state = state
-            self.led_controller = led_controller
-            self.update_leds()
-        except TypeError as error:
-            print(error)
-            self.led_controller.set_all(255, 0, 0)
+
+        self.room = room
+        self.state = state
+        self.led_controller = led_controller
+        self.update_leds()
 
     def validate_brightness(self, brightness):
         if brightness >= 255:
