@@ -1,15 +1,12 @@
 class Keyboard:
     def __init__(self):
-        self.keys = {}
+        self.keys = []
 
     def add_key(self, key):
-        self.keys[key.index] = {
-            'action': key.action,
-            'color': key.color
-        }
+        self.keys.append(key)
 
     def get_key(self, index):
-        return self.keys[index]
+        return [key for key in self.keys if key.index == index][0]
 
 
 if __name__ == '__main__':
