@@ -31,6 +31,16 @@ class Room:
         self.bridge.update_group(self.id, payload)
         self.update_room()
 
+    def increase_hue(self):
+        payload = { "hue_inc": 6553 }
+        self.bridge.update_group(self.id, payload)
+        self.update_room()
+
+    def decrease_hue(self):
+        payload = { "hue_inc": -6553 }
+        self.bridge.update_group(self.id, payload)
+        self.update_room()
+
 if __name__ == '__main__':
     exit()
     

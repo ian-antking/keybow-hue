@@ -12,6 +12,7 @@ pylint = "*"
 keybow = "==0.0.2"
 python-dotenv = "==0.10.3"
 requests = "*"
+colorsys = "*"
 
 [requires]
 python_version = "3.8"
