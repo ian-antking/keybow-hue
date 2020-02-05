@@ -46,8 +46,8 @@ if __name__ == '__main__':
     room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], DISCOVERY_URL))
 
     keyboard_one = keyboard.Keyboard()
-    keyboard_one.add_key(keyboard.Key(0, room.dim, lambda: [room.get_state('bri') - 50] * 3 if room.get_state('on') else [0] * 3))
-    keyboard_one.add_key(helpers.build_power_button(room, keyboard_one, 1))
+    keyboard_one.add_key(helpers.keys.build_dimmer_button(room, keyboard, 0))
+    keyboard_one.add_key(helpers.keys.build_power_button(room, keyboard, 1))
     keyboard_one.add_key(keyboard.Key(2, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3))
     
 
