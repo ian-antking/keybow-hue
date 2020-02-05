@@ -25,5 +25,12 @@ def build_increase_hue_button(room, keyboard, key_index):
 def build_decrease_hue_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.decrease_hue, lambda: (convert_hue_color(room.get_state('hue') - 6553, 254, 254) if room.get_state('on') else [0] * 3))
 
+def build_hue_indicator(room, keyboard, key_index):
+    return keyboard.Key(key_index, lambda: print(f'key {key_index} pressed'), lambda: (convert_hue_color(room.get_state('hue'), 254, 254) if room.get_state('on') else [0] * 3))
+
+def build_saturation_indicator(room, keyboard, key_index):
+    return keyboard.Key(key_index, lambda: print(f'key {key_index} pressed'), lambda: (convert_hue_color(room.get_state('hue'), room.get_state('sat'), 254) if room.get_state('on') else [0] * 3))
+
+
 def build_blank_button(room, keyboard, key_index):
     return keyboard.Key(key_index, lambda: print(f'key {key_index} pressed'), lambda: (convert_hue_color(room.get_state('hue'), room.get_state('sat'), room.get_state('bri')) if room.get_state('on') else [0] * 3))
