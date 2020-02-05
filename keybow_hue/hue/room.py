@@ -41,6 +41,16 @@ class Room:
         self.bridge.update_group(self.id, payload)
         self.update_room()
 
+    def increase_sat(self):
+        payload = { "sat_inc": 25.4 }
+        self.bridge.update_group(self.id, payload)
+        self.update_room()
+
+    def decrease_sat(self):
+        payload = { "sat_inc": -25.4 }
+        self.bridge.update_group(self.id, payload)
+        self.update_room()
+
 if __name__ == '__main__':
     exit()
     
