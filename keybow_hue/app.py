@@ -40,13 +40,14 @@ if __name__ == '__main__':
     import time
     import config
     import state
+    import helpers
     
     conf = config.Env(['HUE_TOKEN', 'ROOM_NAME'])
     room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], DISCOVERY_URL))
 
     keyboard_one = keyboard.Keyboard()
     keyboard_one.add_key(keyboard.Key(0, room.dim, lambda: [room.get_state('bri') - 50] * 3 if room.get_state('on') else [0] * 3))
-    keyboard_one.add_key(keyboard.Key(1, room.toggle_on_off, lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0)))
+    keyboard_one.add_key(helpers.build_power_button(room, keyboard_one, 1))
     keyboard_one.add_key(keyboard.Key(2, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3))
     
 
