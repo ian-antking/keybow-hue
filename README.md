@@ -37,6 +37,7 @@ python3 keybow_hue/app.py
 
 The keybow should be oriented with the power cable coming out of the top:
 
+|     |     |     |     |
 | --- | --- | --- | --- |
 | power | decrease hue | current hue | increase hue |
 | not used | decrease saturation | current saturation | incresase saturation |
