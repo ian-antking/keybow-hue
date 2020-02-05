@@ -42,12 +42,12 @@ class Room:
         self.update_room()
 
     def increase_sat(self):
-        payload = { "sat_inc": 25 }
+        payload = { "sat_inc": 50 }
         self.bridge.update_group(self.id, payload)
         self.update_room()
 
     def decrease_sat(self):
-        payload = { "sat_inc": -25 }
+        payload = { "sat_inc": -50 }
         self.bridge.update_group(self.id, payload)
         self.update_room()
 
