@@ -10,7 +10,7 @@ def build_bright_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3)
 
 def build_increase_hue_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.increase_hue, lambda: colorsys.hsv_to_rgb(room.get_state('hue') + 6553, room.get_state('sat'), room.get_state('bri')))
+    return keyboard.Key(key_index, room.increase_hue, lambda: colorsys.hsv_to_rgb(360 * ((room.get_state('hue') + 6553) / 65535), room.get_state('sat') / 254, room.get_state('bri') / 254))
 
 def build_decrease_hue_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.decrease_hue, lambda: colorsys.hsv_to_rgb(room.get_state('hue') - 6553, room.get_state('sat'), room.get_state('bri')))
+    return keyboard.Key(key_index, room.decrease_hue, lambda: colorsys.hsv_to_rgb(360 * ((room.get_state('hue') - 6553) / 65535), room.get_state('sat') / 254, room.get_state('bri') / 254))
