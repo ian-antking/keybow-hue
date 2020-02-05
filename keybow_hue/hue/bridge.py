@@ -28,8 +28,8 @@ class Bridge:
         response = requests.get(f'{self.bridge_url}/scenes/{scene_id}')
         return response.json()
 
-    def set_scene(self, scene_id):
-        url = f'{self.bridge_url}/groups/0/action'
+    def set_scene(self, group_id, scene_id):
+        url = f'{self.bridge_url}/groups/{group_id}/action'
         payload = { 'scene': scene_id }
         response = requests.put(url, json.dumps(payload))
         return response.status_code
