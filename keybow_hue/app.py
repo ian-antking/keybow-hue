@@ -52,6 +52,9 @@ if __name__ == '__main__':
     keyboard_one.add_key(helpers.keys.build_decrease_sat_button(room, keyboard, 4))
     keyboard_one.add_key(helpers.keys.build_increase_hue_button(room, keyboard, 2))
     keyboard_one.add_key(helpers.keys.build_decrease_hue_button(room, keyboard, 5))
+    keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 6))
+    keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 7))
+    keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 8))
     keyboard_one.add_key(helpers.keys.build_power_button(room, keyboard, 11))
     
 
