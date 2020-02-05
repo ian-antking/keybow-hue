@@ -48,6 +48,8 @@ if __name__ == '__main__':
     keyboard_one = keyboard.Keyboard()
     keyboard_one.add_key(helpers.keys.build_bright_button(room, keyboard, 0))
     keyboard_one.add_key(helpers.keys.build_dimmer_button(room, keyboard, 3))
+    keyboard_one.add_key(helpers.keys.build_increase_sat_button(room, keyboard, 1))
+    keyboard_one.add_key(helpers.keys.build_decrease_sat_button(room, keyboard, 4))
     keyboard_one.add_key(helpers.keys.build_increase_hue_button(room, keyboard, 2))
     keyboard_one.add_key(helpers.keys.build_decrease_hue_button(room, keyboard, 5))
     keyboard_one.add_key(helpers.keys.build_power_button(room, keyboard, 11))
