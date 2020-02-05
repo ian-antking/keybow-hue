@@ -48,7 +48,7 @@ if __name__ == '__main__':
     keyboard_one = keyboard.Keyboard()
     keyboard_one.add_key(helpers.keys.build_dimmer_button(room, keyboard, 0))
     keyboard_one.add_key(helpers.keys.build_power_button(room, keyboard, 1))
-    keyboard_one.add_key(keyboard.Key(2, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3))
+    keyboard_one.add_key(helpers.keys.build_bright_button(room, keyboard, 2))
     
 
     state_engine = state.Engine()
