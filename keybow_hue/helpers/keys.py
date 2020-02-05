@@ -14,13 +14,13 @@ def build_bright_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.bright, lambda: [room.get_state('bri') + 50] * 3 if room.get_state('on') else [0] * 3)
 
 def build_increase_sat_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.increase_sat, lambda:(convert_hue_color(room.get_state('hue'), room.get_state('sat') + 25, 254)))
+    return keyboard.Key(key_index, room.increase_sat, lambda:(convert_hue_color(room.get_state('hue'), room.get_state('sat') + 25, 254) if room.get_state('on') else [0] * 3))
 
 def build_decrease_sat_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.decrease_sat, lambda:(convert_hue_color(room.get_state('hue'), room.get_state('sat') - 25, 254)))
+    return keyboard.Key(key_index, room.decrease_sat, lambda:(convert_hue_color(room.get_state('hue'), room.get_state('sat') - 25, 254) if room.get_state('on') else [0] * 3))
 
 def build_increase_hue_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.increase_hue, lambda:(convert_hue_color(room.get_state('hue') + 6553, 254, 254)))
+    return keyboard.Key(key_index, room.increase_hue, lambda:(convert_hue_color(room.get_state('hue') + 6553, 254, 254) if room.get_state('on') else [0] * 3))
 
 def build_decrease_hue_button(room, keyboard, key_index):
-    return keyboard.Key(key_index, room.decrease_hue, lambda:(convert_hue_color(room.get_state('hue') - 6553, 254, 254)))
+    return keyboard.Key(key_index, room.decrease_hue, lambda:(convert_hue_color(room.get_state('hue') - 6553, 254, 254) if room.get_state('on') else [0] * 3))
