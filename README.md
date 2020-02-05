@@ -1,7 +1,7 @@
 # Keybow-Hue
 Control Phillips Hue lights with the [Pimoroni Keybow](https://shop.pimoroni.com/products/keybow).
 
-Also compatible with the [Keybow Mini](https://shop.pimoroni.com/products/keybow-mini-3-key-macro-pad-kit?variant=27890392039507)
+Not curently compatible with the [Keybow Mini](https://shop.pimoroni.com/products/keybow-mini-3-key-macro-pad-kit?variant=27890392039507)
 
 ## Getting Started
 
@@ -33,5 +33,11 @@ Open a terminal, and run this command from the project root:
 ```
 python3 keybow_hue/app.py 
 ```
+### Using the app
 
-If no config variables are found, all keys will turn red. Otherwise, key 1 will turn red/green depending on if the lights in your room are currently on. If they are on, keys 0 & 2 can be used to adjust the brightness.
+The keybow should be oriented with the power cable coming out of the top:
+
+| --- | --- | --- | --- |
+| power | decrease hue | current hue | increase hue |
+| not used | decrease saturation | current saturation | incresase saturation |
+| not used | decrease brightness | current brightness | increase brightness |
