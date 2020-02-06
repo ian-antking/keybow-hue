@@ -33,3 +33,6 @@ def build_saturation_indicator(room, keyboard, key_index):
 
 def build_blank_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.update_room, lambda: (convert_hue_color(room.get_state('hue'), room.get_state('sat'), room.get_state('bri')) if room.get_state('on') else [0] * 3))
+
+def build_mode_button(engine, room, keyboard, key_index):
+    return keyboard.Key(key_index, engine.change_mode, lambda: colorsys.hsv_to_rgb(engine.mode % len(engine.keyboards)/10,1,1) if room.get_state('on') else [0] * 3)

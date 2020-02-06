@@ -46,6 +46,7 @@ if __name__ == '__main__':
     room = hue.Room(conf.env['ROOM_NAME'], hue.Bridge(conf.env['HUE_TOKEN'], DISCOVERY_URL))
 
     keyboard_one = keyboard.Keyboard()
+    state_engine = state.Engine()
 
     keyboard_one.add_key(helpers.keys.build_bright_button(room, keyboard, 0))
     keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 3))
@@ -60,12 +61,14 @@ if __name__ == '__main__':
     keyboard_one.add_key(helpers.keys.build_decrease_hue_button(room, keyboard, 8))
 
     keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 9))
-    keyboard_one.add_key(helpers.keys.build_blank_button(room, keyboard, 10))
+    keyboard_one.add_key(helpers.keys.build_mode_button(state_engine, room, keyboard, 10))
     keyboard_one.add_key(helpers.keys.build_power_button(room, keyboard, 11))
-    
 
-    state_engine = state.Engine()
+    keyboard_two = keyboard.Keyboard()
+    keyboard_two.add_key(helpers.keys.build_mode_button(state_engine, room, keyboard, 10))
+    
     state_engine.add_keyboard(keyboard_one)
+    state_engine.add_keyboard(keyboard_two)
     app = App(hue, state_engine, keybow)
 
     @keybow.on()
