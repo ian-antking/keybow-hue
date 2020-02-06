@@ -4,6 +4,10 @@ def convert_hue_color(hue, saturaton, brightness):
     color = colorsys.hsv_to_rgb(hue / 65535, saturaton / 254, brightness / 254)
     return [int(value * 255) for value in color]
 
+def generate_keybow_color(hue, saturaton, brightness):
+    color = [hue, saturaton, brightness]
+    return [int(value * 255) for value in color]
+
 def build_power_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.toggle_on_off, lambda: (0, 255, 0) if room.get_state('on') else (25, 0, 0))
 
@@ -35,4 +39,4 @@ def build_blank_button(room, keyboard, key_index):
     return keyboard.Key(key_index, room.update_room, lambda: (convert_hue_color(room.get_state('hue'), room.get_state('sat'), room.get_state('bri')) if room.get_state('on') else [0] * 3))
 
 def build_mode_button(engine, room, keyboard, key_index):
-    return keyboard.Key(key_index, engine.change_mode, lambda: colorsys.hsv_to_rgb(engine.mode % len(engine.keyboards)/10,1,1) if room.get_state('on') else [0] * 3)
+    return keyboard.Key(key_index, engine.change_mode, lambda: generate_keybow_color(engine.mode % len(engine.keyboards)/10,1,1) if room.get_state('on') else [0] * 3)
