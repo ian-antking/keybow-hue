@@ -66,6 +66,7 @@ if __name__ == '__main__':
 
     keyboard_two = keyboard.Keyboard()
     keyboard_two.add_key(helpers.keys.build_mode_button(state_engine, room, keyboard, 10))
+    keyboard_two.add_key(helpers.keys.build_power_button(room, keyboard, 11))
     
     state_engine.add_keyboard(keyboard_one)
     state_engine.add_keyboard(keyboard_two)
