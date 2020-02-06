@@ -5,7 +5,7 @@ def convert_hue_color(hue, saturaton, brightness):
     return [int(value * 255) for value in color]
 
 def generate_keybow_color(hue, saturaton, brightness):
-    color = [hue, saturaton, brightness]
+    color = colorsys.hsv_to_rgb(hue, saturaton, brightness)
     return [int(value * 255) for value in color]
 
 def build_power_button(room, keyboard, key_index):
